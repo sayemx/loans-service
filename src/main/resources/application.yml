@@ -1,3 +1,12 @@
+logging:
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){yellow} %clr(%-5level){blue} %clr([%thread]){magenta} %clr(%logger{36}){cyan} - %msg%n"
+  level:
+     com:
+        sayem:
+           loans: DEBUG
+
+
 server:
   port: 8090
 
@@ -11,10 +20,10 @@ spring:
     active:
      - "qa"
   datasource:
-    url: jdbc:mysql://localhost:3306/loansdb
+    url: jdbc:mysql://localhost:3307/loansdb
 #    driverClassName: org.h2.Driver
     username: root
-    password: 1234567
+    password: root
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
@@ -55,6 +64,14 @@ management:
         include: "*"
   endpoint:
     shutdown:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
       enabled: true
   info:
     env:
